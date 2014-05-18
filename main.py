@@ -2,9 +2,12 @@ import sfml as sf
 
 from player import *
 from spritesheet import *
+from input_system import InputSystem
 
 # create the main window
 window = sf.RenderWindow(sf.VideoMode(800, 480), "pySFML Window")
+
+input = InputSystem(window)
 
 try:
     # Create player
@@ -15,6 +18,8 @@ try:
     frame_rate = sf.Text("0", font, 20)
 
 except IOError: exit(1)
+
+input.add_key_handler(player)
 
 clock = sf.Clock()
 frame_accum = 0
@@ -33,10 +38,7 @@ while window.is_open:
         frame_accum = 0
 
     # process events
-    for event in window.events:
-        # close window: exit
-        if type(event) is sf.CloseEvent:
-            window.close()
+    input.handle()
 
     player.update(dt)
     

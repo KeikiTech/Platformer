@@ -1,8 +1,9 @@
 import sfml as sf
 from res import *
 from spritesheet import *
+from input_system import KeyHandler
 
-class Player(sf.Drawable):
+class Player(sf.Drawable, KeyHandler):
     def __init__(self):
         self._sprite = SpriteSheet(Res.blue_peewee)
         self._sprite.init(36, 6, 0.1)
