@@ -6,12 +6,13 @@ from input_system import InputSystem
 
 # create the main window
 window = sf.RenderWindow(sf.VideoMode(800, 480), "pySFML Window")
+window.key_repeat_enabled = False
 
 input = InputSystem(window)
 
 try:
     # Create player
-    player = Player()
+    player = Player(100, 100)
 
     # create some graphical text to display
     font = sf.Font.from_file("Content/8bit.ttf")
