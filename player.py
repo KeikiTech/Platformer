@@ -58,3 +58,6 @@ class Player(sf.Drawable, Collideable, KeyHandler):
         if other.stationary and self._vertical_velocity > 0:
             self._vertical_velocity = 0
         return True
+    
+    def on_collision_end(self, other):
+        pass

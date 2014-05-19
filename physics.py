@@ -13,10 +13,19 @@ class Physics:
                     result_a = a.on_collision_begin(b)
                     result_b = b.on_collision_begin(a)
                     if result_a and result_b:
+                        a.colliding.add(b)
+                        b.colliding.add(a)
                         if a.stationary:
                             self._resolve_collision(b, a)
                         else:
                             self._resolve_collision(a, b)
+                else:
+                    if a in b.colliding:
+                        # No longer colliding
+                        a.colliding.remove(b)
+                        b.colliding.remove(a)
+                        a.on_collision_end(b)
+                        b.on_collision_end(a)
     
     def _resolve_collision(self, a, b):
         xOverlap = 0.0

@@ -6,6 +6,7 @@ class Collideable:
         self.width = width
         self.height = height
         self.stationary = stationary
+        self.colliding = set() # Currently colliding objects
     
     def on_collision_begin(self, other):
         return True
