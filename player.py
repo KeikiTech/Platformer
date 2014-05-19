@@ -16,6 +16,8 @@ class Player(sf.Drawable, Collideable, KeyHandler):
         self._move_left = False
         self._move_right = False
         self._jump = False
+        
+        self._vertical_velocity = 0
     
     def draw(self, target, render_states):
         self._sprite.position = self.position
@@ -28,6 +30,9 @@ class Player(sf.Drawable, Collideable, KeyHandler):
             self.position.x -= 100*dt
         elif self._move_right:
             self.position.x += 100*dt
+        
+        self._vertical_velocity += 1*dt
+        self.position.y += self._vertical_velocity
     
     def on_key_pressed(self, key_code):
         if key_code == sf.Keyboard.A and not self._move_right:
@@ -48,3 +53,8 @@ class Player(sf.Drawable, Collideable, KeyHandler):
             self._sprite.set_frame_loop(6, 11)
         elif key_code == sf.Keyboard.SPACE:
             self._jump = False
+    
+    def on_collision_begin(self, other):
+        if other.stationary and self._vertical_velocity > 0:
+            self._vertical_velocity = 0
+        return True

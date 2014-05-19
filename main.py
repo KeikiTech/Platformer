@@ -1,18 +1,25 @@
 import sfml as sf
 
-from player import *
-from spritesheet import *
 from input_system import InputSystem
+from physics import Physics
+from player import Player
+from platform import Platform
 
 # create the main window
 window = sf.RenderWindow(sf.VideoMode(800, 480), "pySFML Window")
 window.key_repeat_enabled = False
 
 input = InputSystem(window)
+physics = Physics()
 
 try:
     # Create player
-    player = Player(100, 100)
+    player = Player(100, 50)
+    physics.add_collideable(player)
+    
+    # Create platform
+    platform = Platform(100, 200)
+    physics.add_collideable(platform)
 
     # create some graphical text to display
     font = sf.Font.from_file("Content/8bit.ttf")
@@ -43,9 +50,14 @@ while window.is_open:
 
     player.update(dt)
     
+    physics.handle_collisions()
+    
     ## Draw
     
     window.clear(sf.Color(120, 120, 120)) # clear screen
+    
+    # Draw the platform
+    window.draw(platform)
     
     # Draw the player
     window.draw(player)
