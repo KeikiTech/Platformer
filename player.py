@@ -33,11 +33,11 @@ class Player(sf.Drawable, Collideable, KeyHandler):
             self.position.x += 100*dt
         
         if self._jump:
-            self._vertical_velocity -= 0.1*dt
             self.position.y -= self._vertical_velocity
+            self._vertical_velocity -= 1*dt
         else:
-            self._vertical_velocity += 1*dt
             self.position.y += self._vertical_velocity
+            self._vertical_velocity += 1*dt
 
     
     def on_key_pressed(self, key_code):
@@ -47,9 +47,13 @@ class Player(sf.Drawable, Collideable, KeyHandler):
         elif key_code == sf.Keyboard.D and not self._move_left:
             self._move_right = True
             self._sprite.set_frame_loop(18, 23)
-        elif key_code == sf.Keyboard.SPACE: # TODO I think we want on_key_down here
+        elif key_code == sf.Keyboard.SPACE:
             self._jump = True
-            self._vertical_velocity = -0.1
+            self._vertical_velocity = 0.4  # Should this be a constant or s.th.?
+            if self._move_right:
+                self._sprite.set_frame_loop(30, 30)
+            if self._move_left:
+                self._sprite.set_frame_loop(33, 33)
     
     def on_key_released(self, key_code):
         if key_code == sf.Keyboard.A:
