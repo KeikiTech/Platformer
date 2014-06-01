@@ -7,7 +7,7 @@ from input_system import KeyHandler
 
 class Player(sf.Drawable, Collideable, KeyHandler):
     def __init__(self, x, y):
-        Collideable.__init__(self, x, y, 64, 64)
+        Collideable.__init__(self, x, y, 24, 44)
         self._sprite = SpriteSheet(Res.blue_peewee)
         self._sprite.init(36, 6, 0.1)
         self._sprite.set_frame_loop(0, 5)
@@ -21,7 +21,7 @@ class Player(sf.Drawable, Collideable, KeyHandler):
         self._vertical_velocity = 0
     
     def draw(self, target, render_states):
-        self._sprite.position = self.position
+        self._sprite.position = self.position-sf.Vector2(23, 10)
         target.draw(self._sprite, render_states)
     
     def update(self, dt):

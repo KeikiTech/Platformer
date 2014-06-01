@@ -3,7 +3,7 @@ import sfml as sf
 from input_system import InputSystem
 from physics import Physics
 from player import Player
-from platform import Platform
+from platform import *
 
 # create the main window
 window = sf.RenderWindow(sf.VideoMode(800, 480), "pySFML Window")
@@ -17,9 +17,12 @@ try:
     player = Player(100, 50)
     physics.add_collideable(player)
     
-    # Create platform
-    platform = Platform(100, 200)
-    physics.add_collideable(platform)
+    # Create platforms
+    platform0 = BigPlatform(100, 200)
+    physics.add_collideable(platform0)
+    
+    platform1 = SmallPlatform(400, 150)
+    physics.add_collideable(platform1)
 
     # create some graphical text to display
     font = sf.Font.from_file("Content/8bit.ttf")
@@ -56,8 +59,9 @@ while window.is_open:
     
     window.clear(sf.Color(120, 120, 120)) # clear screen
     
-    # Draw the platform
-    window.draw(platform)
+    # Draw the platforms
+    window.draw(platform0)
+    window.draw(platform1)
     
     # Draw the player
     window.draw(player)
