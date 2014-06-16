@@ -8,6 +8,7 @@ from platform import *
 # create the main window
 window = sf.RenderWindow(sf.VideoMode(800, 480), "pySFML Window")
 window.key_repeat_enabled = False
+view = window.default_view
 
 input = InputSystem(window)
 physics = Physics()
@@ -52,6 +53,9 @@ while window.is_open:
     input.handle()
 
     player.update(dt)
+
+    # Update camera
+    view.center = player._sprite.position
     
     physics.handle_collisions()
     
@@ -65,6 +69,9 @@ while window.is_open:
     
     # Draw the player
     window.draw(player)
+
+    #### Draw GUI stuff, reset view
+    window.view = window.default_view
     
     # Draw framerate
     window.draw(frame_rate)

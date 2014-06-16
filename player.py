@@ -21,7 +21,6 @@ class Player(sf.Drawable, Collideable, KeyHandler):
         self._vertical_velocity = 0
     
     def draw(self, target, render_states):
-        self._sprite.position = self.position-sf.Vector2(23, 10)
         target.draw(self._sprite, render_states)
     
     def update(self, dt):
@@ -36,6 +35,8 @@ class Player(sf.Drawable, Collideable, KeyHandler):
         self.position.y += self._vertical_velocity*dt
         self._vertical_velocity += 1000*dt
 
+        # Update player sprite position
+        self._sprite.position = self.position-sf.Vector2(23, 10)
     
     def on_key_pressed(self, key_code):
         if key_code == sf.Keyboard.A and not self._move_right:
