@@ -25,6 +25,9 @@ try:
     platform1 = SmallPlatform(400, 150)
     physics.add_collideable(platform1)
 
+    platform2 = BigPlatform(0, 300)
+    physics.add_collideable(platform2)
+
     # create some graphical text to display
     font = sf.Font.from_file("Content/8bit.ttf")
     frame_rate = sf.Text("0", font, 20)
@@ -62,16 +65,18 @@ while window.is_open:
     ## Draw
     
     window.clear(sf.Color(120, 120, 120)) # clear screen
+    window.view = view
     
     # Draw the platforms
     window.draw(platform0)
     window.draw(platform1)
+    window.draw(platform2)
     
     # Draw the player
     window.draw(player)
 
     #### Draw GUI stuff, reset view
-    window.view = window.default_view
+    #window.view = window.default_view
     
     # Draw framerate
     window.draw(frame_rate)
