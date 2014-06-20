@@ -1,3 +1,9 @@
+# Axes
+side_up = 0
+side_down = 1
+side_left = 2
+side_right = 3
+
 class Physics:
     def __init__(self):
         self._collideables = []
@@ -10,15 +16,17 @@ class Physics:
             for b in self._collideables[i+1:]:
                 if a.position.x <= b.position.x+b.width and a.position.x+a.width >= b.position.x and \
                 a.position.y <= b.position.y+b.height and a.position.y+a.height >= b.position.y:
-                    result_a = a.on_collision_begin(b)
-                    result_b = b.on_collision_begin(a)
+                    side_a = self._get_collision_side(a, b)
+                    side_b = self._get_collision_side(b, a)
+                    result_a = a.on_collision_begin(b, side_a)
+                    result_b = b.on_collision_begin(a, side_b)
                     if result_a and result_b:
                         a.colliding.add(b)
                         b.colliding.add(a)
                         if a.stationary:
-                            self._resolve_collision(b, a)
+                            side = self._resolve_collision(b, a)
                         else:
-                            self._resolve_collision(a, b)
+                            side = self._resolve_collision(a, b)
                 else:
                     if a in b.colliding:
                         # No longer colliding
@@ -26,6 +34,26 @@ class Physics:
                         b.colliding.remove(a)
                         a.on_collision_end(b)
                         b.on_collision_end(a)
+
+    def _get_collision_side(self, a, b):
+        if a.position.x <= b.position.x:
+            x_side = side_right
+            xOverlap = b.position.x - (a.position.x + a.width)
+        elif a.position.x > b.position.x:
+            x_side = side_left
+            xOverlap = (b.position.x + b.width) - a.position.x
+
+        if a.position.y <= b.position.y:
+            y_side = side_down
+            yOverlap = b.position.y - (a.position.y + a.height)
+        elif a.position.y > b.position.y:
+            y_side = side_up
+            yOverlap = (b.position.y + b.height) - a.position.y
+
+        if abs(xOverlap) < abs(yOverlap):
+            return x_side
+        elif abs(xOverlap) > abs(yOverlap):
+            return y_side
     
     def _resolve_collision(self, a, b):
         xOverlap = 0.0

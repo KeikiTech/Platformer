@@ -8,7 +8,7 @@ class Collideable:
         self.stationary = stationary
         self.colliding = set() # Currently colliding objects
     
-    def on_collision_begin(self, other):
+    def on_collision_begin(self, other, side):
         return True
     
     def on_collision_end(self, other):

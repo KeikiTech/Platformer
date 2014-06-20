@@ -1,6 +1,7 @@
 import sfml as sf
 import sys
 from res import Res
+import physics
 from spritesheet import SpriteSheet
 from collideable import Collideable
 from input_system import KeyHandler
@@ -56,8 +57,8 @@ class Player(sf.Drawable, Collideable, KeyHandler):
             self._move_right = False
             self._sprite.set_frame_loop(6, 11)
     
-    def on_collision_begin(self, other):
-        if other.stationary and self._vertical_velocity > 0:
+    def on_collision_begin(self, other, side):
+        if other.stationary and side == physics.side_down and self._vertical_velocity > 0:
             self._vertical_velocity = 0
             self._on_ground = True
         return True
