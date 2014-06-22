@@ -1,3 +1,4 @@
+import sys
 import sfml as sf
 
 from input_system import InputSystem
@@ -24,6 +25,7 @@ try:
     # create some graphical text to display
     font = sf.Font.from_file("Content/8bit.ttf")
     frame_rate = sf.Text("0", font, 20)
+    game_over_text = sf.Text("              GAME OVER YOU LOSE", font, 60)
 
 except IOError: exit(1)
 
@@ -63,7 +65,12 @@ while window.is_open:
     world.draw(window)
 
     #### Draw GUI stuff, reset view
-    #window.view = window.default_view
+    window.view = window.default_view
+   
+    # Check for game over
+    if world.player._sprite.position.y > 1000:
+        window.draw(game_over_text)
+        # TODO should we do something else when game is over?
     
     # Draw framerate
     window.draw(frame_rate)
