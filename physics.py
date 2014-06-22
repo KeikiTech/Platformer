@@ -14,8 +14,8 @@ class Physics:
     def handle_collisions(self):
         for i, a in enumerate(self._collideables):
             for b in self._collideables[i+1:]:
-                if a.position.x <= b.position.x+b.width and a.position.x+a.width >= b.position.x and \
-                a.position.y <= b.position.y+b.height and a.position.y+a.height >= b.position.y:
+                if a.position.x < b.position.x+b.width and a.position.x+a.width > b.position.x and \
+                a.position.y < b.position.y+b.height and a.position.y+a.height > b.position.y:
                     side_a = self._get_collision_side(a, b)
                     side_b = self._get_collision_side(b, a)
                     result_a = a.on_collision_begin(b, side_a)
@@ -27,7 +27,9 @@ class Physics:
                             side = self._resolve_collision(b, a)
                         else:
                             side = self._resolve_collision(a, b)
-                else:
+                # Not colliding, remove from list if they're not still "touching"
+                elif not (a.position.x <= b.position.x+b.width and a.position.x+a.width >= b.position.x and \
+                a.position.y <= b.position.y+b.height and a.position.y+a.height >= b.position.y):
                     if a in b.colliding:
                         # No longer colliding
                         a.colliding.remove(b)

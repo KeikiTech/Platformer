@@ -17,11 +17,14 @@ class World:
         self.physics.add_collideable(platform)
         
     def create_small_platform(self, x, y):
-        platform = SmallPlatform(x, y)
+        platform = SmallMovingPlatform(x, y)
         self.platforms.append(platform)
         self.physics.add_collideable(platform)
 
     def update(self, dt):
+        for platform in self.platforms:
+            platform.update(dt)
+    
         self.player.update(dt)
 
         self.physics.handle_collisions()

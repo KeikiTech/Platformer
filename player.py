@@ -32,9 +32,9 @@ class Player(sf.Drawable, Collideable, KeyHandler):
         elif self._move_right:
             self.position.x += 100*dt
         
-        # TODO: Gravity should only be applied when the player isn't on the ground
         self.position.y += self._vertical_velocity*dt
-        self._vertical_velocity += 1000*dt
+        if not self._on_ground:
+            self._vertical_velocity += 1000*dt
 
         # Update player sprite position
         self._sprite.position = self.position-sf.Vector2(23, 10)

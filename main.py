@@ -19,7 +19,7 @@ try:
 
     # Create platforms
     world.create_big_platform(100, 200)
-    world.create_small_platform(400, 150)
+    world.create_small_platform(350, 150)
     world.create_big_platform(0, 300)
 
     # create some graphical text to display
