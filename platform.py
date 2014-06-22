@@ -63,7 +63,7 @@ class SmallHMovingPlatform(sf.Drawable, Platform, Collideable):
             print("asdf")
             self._on_me.remove(other)
 
-class SmallYMovingPlatform(sf.Drawable, Platform, Collideable):
+class SmallVMovingPlatform(sf.Drawable, Platform, Collideable):
     def __init__(self, x, y):
         Collideable.__init__(self, x, y, 45, 30, True)
         self._sprite = sf.Sprite(Res.small_platform)

@@ -2,4 +2,5 @@
 BigPlatform	100	200
 SmallHMovingPlatform	350	150
 BigPlatform	0	300
-SmallYMovingPlatform 500	200
+SmallVMovingPlatform	500	200
+Fireball	500	125

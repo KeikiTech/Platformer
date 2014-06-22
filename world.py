@@ -1,5 +1,6 @@
 from player import Player
 from platform import *
+from fireball import Fireball
 
 class World:
 
@@ -10,6 +11,7 @@ class World:
         self.physics.add_collideable(self.player)
         
         self.platforms = []
+        self.fireballs = []
 
     def load(self, iostream):
         for line in iostream:
@@ -26,8 +28,10 @@ class World:
                 self.create_small_platform(x, y)
             elif fields[0] == "SmallHMovingPlatform":
                 self.create_small_hmoving_platform(x, y)
-            elif fields[0] == "SmallYMovingPlatform":
-                self.create_small_ymoving_platform(x, y)
+            elif fields[0] == "SmallVMovingPlatform":
+                self.create_small_vmoving_platform(x, y)
+            elif fields[0] == "Fireball":
+                self.create_fireball(x, y)
 
 
     def create_big_platform(self, x, y):
@@ -45,14 +49,22 @@ class World:
         self.platforms.append(platform)
         self.physics.add_collideable(platform)
 
-    def create_small_ymoving_platform(self, x, y):
-        platform = SmallYMovingPlatform(x, y)
+    def create_small_vmoving_platform(self, x, y):
+        platform = SmallVMovingPlatform(x, y)
         self.platforms.append(platform)
         self.physics.add_collideable(platform)
+
+    def create_fireball(self, x, y):
+        fireball = Fireball(x, y)
+        self.fireballs.append(fireball)
+        self.physics.add_collideable(fireball)
 
     def update(self, dt):
         for platform in self.platforms:
             platform.update(dt)
+
+        for fireball in self.fireballs:
+            fireball.update(dt)
     
         self.player.update(dt)
 
@@ -61,5 +73,8 @@ class World:
     def draw(self, target):
         for platform in self.platforms:
             target.draw(platform)
+
+        for fireball in self.fireballs:
+            target.draw(fireball)
 
         target.draw(self.player)
