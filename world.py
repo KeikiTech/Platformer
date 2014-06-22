@@ -13,6 +13,8 @@ class World:
 
     def load(self, iostream):
         for line in iostream:
+            if line.startswith("#"):
+                continue
             fields = line.strip().split()
             if len(fields) < 3:
                 continue
