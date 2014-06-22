@@ -18,12 +18,13 @@ physics = Physics()
 WORLD_FILENAME = "Content/world1.tsv"
 
 try:
-    world = World(physics)
+    font = sf.Font.from_file("Content/8bit.ttf")
+
+    world = World(physics, font)
     with open(WORLD_FILENAME, "r") as worldfile:
         world.load(worldfile)
 
     # create some graphical text to display
-    font = sf.Font.from_file("Content/8bit.ttf")
     frame_rate = sf.Text("0", font, 20)
 
 except IOError: exit(1)

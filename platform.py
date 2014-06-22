@@ -55,12 +55,10 @@ class SmallHMovingPlatform(sf.Drawable, Platform, Collideable):
     def on_collision_begin(self, other, side):
         if not other.stationary and side == physics.side_up:
             self._on_me.append(other)
-            print("jah")
         return True
     
     def on_collision_end(self, other):
         if other in self._on_me:
-            print("asdf")
             self._on_me.remove(other)
 
 class SmallVMovingPlatform(sf.Drawable, Platform, Collideable):
@@ -91,10 +89,8 @@ class SmallVMovingPlatform(sf.Drawable, Platform, Collideable):
     def on_collision_begin(self, other, side):
         if not other.stationary and side == physics.side_up:
             self._on_me.append(other)
-            print("jah")
         return True
     
     def on_collision_end(self, other):
         if other in self._on_me:
-            print("asdf")
             self._on_me.remove(other)
