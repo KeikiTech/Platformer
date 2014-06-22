@@ -3,6 +3,8 @@ from platform import *
 
 class World:
 
+    MAX_Y = 1000
+
     def __init__(self, physics):
         self.physics = physics
 
@@ -54,6 +56,11 @@ class World:
         for platform in self.platforms:
             platform.update(dt)
     
+        # Check for game over; respawn if necessary
+        if self.player.position.y > self.MAX_Y:
+            self.player.position.x = self.player.current_checkpoint.x
+            self.player.position.y = self.player.current_checkpoint.y
+
         self.player.update(dt)
 
         self.physics.handle_collisions()

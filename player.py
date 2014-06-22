@@ -13,6 +13,7 @@ class Player(sf.Drawable, Collideable, KeyHandler):
         self._sprite.init(36, 6, 0.1)
         self._sprite.set_frame_loop(0, 5)
         self._sprite.position = sf.Vector2(x, y)
+        self.current_checkpoint = sf.Vector2(x, y)
         
         # Controls
         self._move_left = False
@@ -25,6 +26,7 @@ class Player(sf.Drawable, Collideable, KeyHandler):
         target.draw(self._sprite, render_states)
     
     def update(self, dt):
+        sys.stderr.write(str(self.position.y) + "\n")
         self._sprite.update(dt)
         
         if self._move_left:
