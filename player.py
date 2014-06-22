@@ -26,7 +26,6 @@ class Player(sf.Drawable, Collideable, KeyHandler):
         target.draw(self._sprite, render_states)
     
     def update(self, dt):
-        sys.stderr.write(str(self.position.y) + "\n")
         self._sprite.update(dt)
         
         if self._move_left:
