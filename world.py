@@ -11,6 +11,19 @@ class World:
         
         self.platforms = []
 
+    def load(self, iostream):
+        for line in iostream:
+            fields = line.strip().split()
+            if len(fields) < 3:
+                continue
+            x = int(fields[1])
+            y = int(fields[2])
+            if fields[0] == "BigPlatform":
+                self.create_big_platform(x, y)
+            elif fields[0] == "SmallPlatform":
+                self.create_small_platform(x, y)
+
+
     def create_big_platform(self, x, y):
         platform = BigPlatform(x, y)
         self.platforms.append(platform)

@@ -14,13 +14,12 @@ view = window.default_view
 input = InputSystem(window)
 physics = Physics()
 
+WORLD_FILENAME = "Content/world1.tsv"
+
 try:
     world = World(physics)
-
-    # Create platforms
-    world.create_big_platform(100, 200)
-    world.create_small_platform(350, 150)
-    world.create_big_platform(0, 300)
+    with open(WORLD_FILENAME, "r") as worldfile:
+        world.load(worldfile)
 
     # create some graphical text to display
     font = sf.Font.from_file("Content/8bit.ttf")
