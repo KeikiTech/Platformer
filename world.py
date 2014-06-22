@@ -24,6 +24,10 @@ class World:
                 self.create_big_platform(x, y)
             elif fields[0] == "SmallPlatform":
                 self.create_small_platform(x, y)
+            elif fields[0] == "SmallHMovingPlatform":
+                self.create_small_hmoving_platform(x, y)
+            elif fields[0] == "SmallYMovingPlatform":
+                self.create_small_ymoving_platform(x, y)
 
 
     def create_big_platform(self, x, y):
@@ -32,7 +36,17 @@ class World:
         self.physics.add_collideable(platform)
         
     def create_small_platform(self, x, y):
-        platform = SmallMovingPlatform(x, y)
+        platform = SmallPlatform(x, y)
+        self.platforms.append(platform)
+        self.physics.add_collideable(platform)
+
+    def create_small_hmoving_platform(self, x, y):
+        platform = SmallHMovingPlatform(x, y)
+        self.platforms.append(platform)
+        self.physics.add_collideable(platform)
+
+    def create_small_ymoving_platform(self, x, y):
+        platform = SmallYMovingPlatform(x, y)
         self.platforms.append(platform)
         self.physics.add_collideable(platform)
 
