@@ -1,5 +1,5 @@
 #TypeOfObject	x	y
-Text	500	30	Hello, world!
+Text	-200	30	You cannot move, go into player.py and uncomment the movement code
 BigPlatform	100	200
 SmallHMovingPlatform	350	150
 BigPlatform	0	300
