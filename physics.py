@@ -16,13 +16,21 @@ class Physics:
             for b in self._collideables[i+1:]:
                 if a.position.x < b.position.x+b.width and a.position.x+a.width > b.position.x and \
                 a.position.y < b.position.y+b.height and a.position.y+a.height > b.position.y:
-                    side_a = self._get_collision_side(a, b)
-                    side_b = self._get_collision_side(b, a)
-                    result_a = a.on_collision_begin(b, side_a)
-                    result_b = b.on_collision_begin(a, side_b)
-                    if result_a and result_b:
-                        a.colliding.add(b)
-                        b.colliding.add(a)
+                    # Only notify if they haven't already been notified
+                    if a not in b.colliding:
+                        side_a = self._get_collision_side(a, b)
+                        side_b = self._get_collision_side(b, a)
+                        result_a = a.on_collision_begin(b, side_a)
+                        result_b = b.on_collision_begin(a, side_b)
+                        if result_a and result_b:
+                            a.colliding.add(b)
+                            b.colliding.add(a)
+                            if a.stationary:
+                                side = self._resolve_collision(b, a)
+                            else:
+                                side = self._resolve_collision(a, b)
+                    else:
+                        # Already been notified, but still resolve collisions
                         if a.stationary:
                             side = self._resolve_collision(b, a)
                         else:

@@ -7,7 +7,7 @@ from collideable import Collideable
 
 class Fireball(sf.Drawable, Collideable):
     def __init__(self, x, y):
-        Collideable.__init__(self, x, y, 24, 44)
+        Collideable.__init__(self, x, y, 24, 44, True)
         self._sprite = SpriteSheet(Res.blue_peewee)
         self._sprite.init(36, 6, 0.1)
         self._sprite.set_frame_loop(0, 5)
@@ -21,7 +21,6 @@ class Fireball(sf.Drawable, Collideable):
 
         # Update player sprite position
         self._sprite.position = self.position-sf.Vector2(23, 10)
-        print("drawing")
         
     def on_collision_begin(self, other, side):
         if other.stationary:
