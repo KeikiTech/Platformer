@@ -2,29 +2,38 @@ import sys
 import sfml as sf
 
 from player import Player
-from world import World
 
 def calculate_frame_loop_args(row):
     start = (row - 1) * 6
     end = start + 5
     return start, end
 
-# create the main window
-window = sf.RenderWindow(sf.VideoMode(800, 480), "pySFML Window")
+# Check arguments
+if len(sys.argv) != 3:
+    sys.stderr.write("Here's how to use it -- Just type:\n\n")
+    sys.stderr.write("\tpython3 sprite_animator.py <row> <frame_delay>\n\n")
+    sys.stderr.write("So if you wanted to animate row 4 with a frame delay of 0.1 seconds,\n")
+    sys.stderr.write("you'd type  python3 sprite_animator 4 0.1\n\n")
+    sys.exit()
+
+# Process arguments
+row_number = int(sys.argv[1])
+frame_delay = float(sys.argv[2])
+frame_start, frame_end = calculate_frame_loop_args(row_number)
+
+# Create the main window
+window = sf.RenderWindow(sf.VideoMode(24, 44), "pySFML Window")
 window.key_repeat_enabled = False
 view = window.default_view
+
+# Create and configure Player
 player = Player(0, 0)
 player._sprite.set_frame_loop(12, 17)
-row_number = int(sys.argv[1])
-frame_start, frame_end = calculate_frame_loop_args(row_number)
 player._sprite.set_frame_loop(frame_start, frame_end)
-player._sprite._frame_delay = float(sys.argv[2])
+player._sprite._frame_delay = frame_delay
     
-
-WORLD_FILENAME = "Content/world1.tsv"
-
+# Timey stuff
 clock = sf.Clock()
-dt_accum = 0
 
 # start the game loop
 while window.is_open:
