@@ -1,6 +1,6 @@
 #TypeOfObject	x	y
 Text	-200	30	You cannot move, go into player.py and uncomment the movement code
 BigPlatform	100	200
-SmallHMovingPlatform	350	150
-BigPlatform	0	300
-SmallVMovingPlatform	500	200
+SmallPlatform	500	150
+BigPlatform	900	200
+SmallHMovingPlatform	550	150

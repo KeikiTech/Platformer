@@ -6,6 +6,9 @@ from spritesheet import SpriteSheet
 from collideable import Collideable
 from input_system import KeyHandler
 
+PLAYER_JUMP_VELOCITY = 500
+PLAYER_MOVE_SPEED = 200
+
 class Player(sf.Drawable, Collideable, KeyHandler):
     def __init__(self, x, y):
         Collideable.__init__(self, x, y, 24, 44)
@@ -29,9 +32,9 @@ class Player(sf.Drawable, Collideable, KeyHandler):
         self._sprite.update(dt)
         
         if self._move_left:
-            self.position.x -= 100*dt
+            self.position.x -= PLAYER_MOVE_SPEED*dt
         elif self._move_right:
-            self.position.x += 100*dt
+            self.position.x += PLAYER_MOVE_SPEED*dt
         
         self.position.y += self._vertical_velocity*dt
         if not self._on_ground:
@@ -41,6 +44,8 @@ class Player(sf.Drawable, Collideable, KeyHandler):
         self._sprite.position = self.position-sf.Vector2(23, 10)
     
     def on_key_pressed(self, key_code):
+        ### TUTORIAL 1:
+        # UNCOMMENT THE FOLLOWING 8 LINES.
         if key_code == sf.Keyboard.A and not self._move_right:
             self._move_left = True
             self._sprite.set_frame_loop(12, 17)
@@ -48,7 +53,7 @@ class Player(sf.Drawable, Collideable, KeyHandler):
             self._move_right = True
             self._sprite.set_frame_loop(18, 23)
         elif key_code == sf.Keyboard.SPACE and self._on_ground:
-            self._vertical_velocity = -400  # Should this be a constant or s.th.?
+            self._vertical_velocity = -PLAYER_JUMP_VELOCITY
     
     def on_key_released(self, key_code):
         if key_code == sf.Keyboard.A:
