@@ -32,7 +32,9 @@ class Player(sf.Drawable, Collideable, KeyHandler):
     
     def update(self, dt):
         self._sprite.update(dt)
-        
+
+        ### TUTORIAL 1:
+        # Uncomment the following 4 lines
         if self._move_left:
             self.position.x -= PLAYER_MOVE_SPEED*dt
         elif self._move_right:
@@ -46,8 +48,6 @@ class Player(sf.Drawable, Collideable, KeyHandler):
         self._sprite.position = self.position-sf.Vector2(23, 10)
     
     def on_key_pressed(self, key_code):
-        ### TUTORIAL 1:
-        # Uncomment the following 8 lines
         if key_code == sf.Keyboard.A and not self._move_right:
             self._move_left = True
             self._sprite.set_frame_loop(12, 17)
