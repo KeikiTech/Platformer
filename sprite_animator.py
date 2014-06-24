@@ -22,7 +22,7 @@ frame_delay = float(sys.argv[2])
 frame_start, frame_end = calculate_frame_loop_args(row_number)
 
 # Create the main window
-window = sf.RenderWindow(sf.VideoMode(24, 44), "pySFML Window")
+window = sf.RenderWindow(sf.VideoMode(65, 90), "pySFML Window")
 window.key_repeat_enabled = False
 view = window.default_view
 
