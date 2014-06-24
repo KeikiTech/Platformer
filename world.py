@@ -28,6 +28,7 @@ class World:
             y = int(fields[2])
             if fields[0] == "Text":
                 text = fields[3]
+                text = text.replace("\\n", "\n")
                 self.create_text(x, y, text)
             elif fields[0] == "BigPlatform":
                 self.create_big_platform(x, y)

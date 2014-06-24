@@ -6,6 +6,8 @@ from spritesheet import SpriteSheet
 from collideable import Collideable
 from input_system import KeyHandler
 
+# TUTORIAL 2:
+# Change the following value from 400 to 500
 PLAYER_JUMP_VELOCITY = 500
 PLAYER_MOVE_SPEED = 200
 
@@ -45,7 +47,7 @@ class Player(sf.Drawable, Collideable, KeyHandler):
     
     def on_key_pressed(self, key_code):
         ### TUTORIAL 1:
-        # UNCOMMENT THE FOLLOWING 8 LINES.
+        # Uncomment the following 8 lines
         if key_code == sf.Keyboard.A and not self._move_right:
             self._move_left = True
             self._sprite.set_frame_loop(12, 17)
