@@ -3,21 +3,21 @@ import sfml as sf
 # Abstract key handler interface
 class KeyHandler:
     def on_key_pressed(self, key_code):
-        raise NotImplementedError("You need to implement on_key_pressed in " + self.__class__.__name__)
+        pass
     
     def on_key_released(self, key_code):
-        raise NotImplementedError("You need to implement on_key_released in " + self.__class__.__name__)
+        pass
 
 # Abstract mouse handler interface
 class MouseHandler:
-    def on_mouse_button_pressed(self, button):
-        raise NotImplementedError("You need to implement on_mouse_button_pressed in " + self.__class__.__name__)
+    def on_mouse_button_pressed(self, button, position):
+        pass
     
-    def on_mouse_button_released(self, button):
-        raise NotImplementedError("You need to implement on_mouse_button_released in " + self.__class__.__name__)
+    def on_mouse_button_released(self, button, position):
+        pass
     
     def on_mouse_moved(self, position, move):
-        raise NotImplementedError("You need to implement on_mouse_moved in " + self.__class__.__name__)
+        pass
 
 class InputSystem:
     def __init__(self, window):
@@ -43,10 +43,10 @@ class InputSystem:
             elif type(event) is sf.MouseButtonEvent:
                 if event.pressed:
                     for handler in self._mouse_handlers:
-                        handler.on_mouse_button_pressed(event.button)
+                        handler.on_mouse_button_pressed(event.button, event.position)
                 elif event.released:
                     for handler in self._mouse_handlers:
-                        handler.on_mouse_button_released(event.button)
+                        handler.on_mouse_button_released(event.button, event.position)
             # Mouse move event
             elif type(event) is sf.MouseMoveEvent:
                 for handler in self._mouse_handlers:

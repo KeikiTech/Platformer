@@ -6,9 +6,10 @@ from physics import Physics
 from player import Player
 from platform import *
 from world import World
+from world_editor import WorldEditor
 
 # create the main window
-window = sf.RenderWindow(sf.VideoMode(800, 480), "pySFML Window")
+window = sf.RenderWindow(sf.VideoMode(800, 480), "Platformer")
 window.key_repeat_enabled = False
 view = window.default_view
 
@@ -24,12 +25,16 @@ try:
     with open(WORLD_FILENAME, "r") as worldfile:
         world.load(worldfile)
 
+    editor = WorldEditor(view, world)
+
     # create some graphical text to display
     frame_rate = sf.Text("0", font, 20)
 
 except IOError: exit(1)
 
 input.add_key_handler(world.player)
+input.add_key_handler(editor)
+input.add_mouse_handler(editor)
 
 clock = sf.Clock()
 frame_accum = 0
