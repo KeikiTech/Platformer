@@ -95,9 +95,11 @@ class Player(sf.Drawable, Collideable, KeyHandler):
             self._move_right = False
     
     def on_collision_begin(self, other, side):
-        if other.stationary and side == physics.side_down and self._vertical_velocity > 0:
-            self._vertical_velocity = 0
-            self._on_ground = True
+        if other.stationary:
+            if side == physics.side_down or side == physics.side_up:
+                self._vertical_velocity = 0
+            if side == physics.side_down:
+                self._on_ground = True
         return True
     
     def on_collision_end(self, other):
