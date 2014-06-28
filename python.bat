@@ -1,0 +1,1 @@
+C:\Users\keikitech\Desktop\Python33\python %1 %2 %3 %4 %5 %6

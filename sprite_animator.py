@@ -37,6 +37,11 @@ clock = sf.Clock()
 
 # start the game loop
 while window.is_open:
+    for event in window.events:
+        # close window: exit
+        if type(event) is sf.CloseEvent:
+            window.close()
+
     dt = clock.restart().seconds
 
     ## Update
