@@ -3,6 +3,7 @@ import sfml as sf
 
 from input_system import InputSystem
 from physics import Physics
+from res import Res
 from player import Player
 from platform import *
 from world import World
@@ -40,6 +41,9 @@ clock = sf.Clock()
 frame_accum = 0
 dt_accum = 0
 
+Res.loop = True
+Res.music.play()
+
 # start the game loop
 while window.is_open:
     dt = clock.restart().seconds
@@ -57,7 +61,7 @@ while window.is_open:
 
     # Update world
     world.update(dt)
-
+	
     # Update camera
     view.center = world.player._sprite.position
     

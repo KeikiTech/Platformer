@@ -26,7 +26,18 @@ class SmallPlatform(sf.Drawable, Platform, Collideable):
     def draw(self, target, render_states):
         self._sprite.position = self.position-sf.Vector2(3, 7)
         target.draw(self._sprite, render_states)
-        
+		
+class AcidPlatform(sf.Drawable, Platform, Collideable):
+    def __init__(self, x, y):
+        Collideable.__init__(self, x, y, 242, 110, True)
+        self.deadly = False
+        self._sprite = sf.Sprite(Res.acid_platform)
+        self._sprite.position = sf.Vector2(x, y)
+    
+    def draw(self, target, render_states):
+        self._sprite.position = self.position-sf.Vector2(0, 14)
+        target.draw(self._sprite, render_states)
+		
 class SmallHMovingPlatform(sf.Drawable, Platform, Collideable):
     def __init__(self, x, y):
         Collideable.__init__(self, x, y, 45, 30, True)

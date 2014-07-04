@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+		          #!/usr/bin/env python
 
 # Welcome to comments.py. This program is full of comments. 
 
@@ -10,16 +10,16 @@
 # I can put anything I want in comments, and it doesn't change the way the program runs.
 # Look -- I can even draw a cat picture:
 
-#      /\_/\
-#     ( o o )
-#     ==_Y_==
-#       `-'
+#print(" /\\_/\\")
+#print("( o o )")
+#print("==_Y_==")
+#print(  "`-'")
 
 
 # Try running this program, then adding some comments of your own, then running it again.
 # Bonus: can you tell what the output of this program will be without running it?
 
-print("hello")
+#print("hello")
 #print("goodbye")
 
 
@@ -32,3 +32,8 @@ print("hello")
 #a = b + a
 #b = a
 #print(b)
+
+while True:
+    print("hi urban u r awesome.")
+while True:
+    print("Hi Logan u r more awesome")

@@ -1,10 +1,16 @@
 #TypeOfObject	x	y
 #Text	-200	30	TUTORIAL 1\nYou cannot move. Go into\nplayer.py and uncomment\nthe movement code.
 BigPlatform	100	200
-#Text	350	-200	TUTORIAL 2\nYou cannot jump far enough!\nGo into player.py and\nincrease your jump velocity.
+#Text	350	-70	TUTORIAL 2\nYou cannot jump far enough!\nGo into player.py and\nincrease your jump velocity.
 SmallPlatform	500	150
-#Text	600	300	TUTORIAL 3\nYou cannot make it across\nthe gap! Go into world1.tsv\nand make a platform\ninbetween.
-# TUTORIAL 3:
-# Uncomment the following line
+#Text	600	200	TUTORIAL 3\nYou cannot make it across\nthe gap! Go into world1.tsv\nand make a platform\ninbetween.
+ #TUTORIAL 3:
+ Uncomment the following line
 SmallHMovingPlatform	550	150
 BigPlatform	900	200
+Acid	200	1000
+Acid	400	1000
+Acid	000	1000
+Acid	600	1000
+Acid	800	1000
+Acid	1100	1000

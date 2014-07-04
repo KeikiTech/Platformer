@@ -11,6 +11,7 @@ class SpriteSheet(sf.Sprite):
         self._stop_frame = frames-1
         self._frame_dim = sf.Vector2(self.texture.width/frames_per_row, self.texture.height/(frames/frames_per_row))
         self._loop = True
+        self.loop_done = False
         self._set_frame(0)
     
     def update(self, dt):
@@ -24,6 +25,7 @@ class SpriteSheet(sf.Sprite):
                     self._frame = self._start_frame
                 else:
                     self._frame = self._stop_frame
+                    self.loop_done = True
             self._set_frame(self._frame)            # Set the texture rectangle for the frame
     
     def set_frame_loop(self, start, stop, loop=True):

@@ -11,6 +11,17 @@ class Physics:
     def add_collideable(self, collideable):
         self._collideables.append(collideable)
     
+    def remove_collideable(self, collideable):
+        self._collideables.remove(collideable)
+    
+    def get_collideables_in_area(self, x, y, w, h):
+        in_area = []
+        for a in self._collideables:
+            if a.position.x < x+w and a.position.x+a.width > x and \
+            a.position.y < y+h and a.position.y+a.height > y:
+                in_area.append(a)
+        return in_area
+    
     def handle_collisions(self):
         for i, a in enumerate(self._collideables):
             for b in self._collideables[i+1:]:

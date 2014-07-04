@@ -23,6 +23,8 @@ class Player(sf.Drawable, Collideable, KeyHandler):
         self._sprite.position = sf.Vector2(x, y)
         self.current_checkpoint = sf.Vector2(x, y)
         
+        self.health = 5
+        
         # Controls
         self._move_left = False
         self._move_right = False
@@ -94,7 +96,7 @@ class Player(sf.Drawable, Collideable, KeyHandler):
         elif key_code == sf.Keyboard.D:
             self._move_right = False
     
-    def on_collision_begin(self, other, side):
+    def on_collision_begin(self, other, side):       
         if other.stationary:
             if side == physics.side_down or side == physics.side_up:
                 self._vertical_velocity = 0

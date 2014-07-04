@@ -1,0 +1,10 @@
+#TypeOfObject	x	y
+Text	-200	600	Game Over!
+#BigPlatform	100	200
+Text	150	600	press _ to restart
+#SmallPlatform	500	150
+#Text	600	200	TUTORIAL 3\nYou cannot make it across\nthe gap! Go into world1.tsv\nand make a platform\ninbetween.
+ #TUTORIAL 3:
+ Uncomment the following line
+#SmallHMovingPlatform	550	150
+#BigPlatform	900	200
