@@ -8,9 +8,9 @@ SmallPlatform	500	150
  Uncomment the following line
 SmallHMovingPlatform	550	150
 BigPlatform	900	200
-Acid	200	1000
-Acid	400	1000
-Acid	000	1000
-Acid	600	1000
-Acid	800	1000
-Acid	1100	1000
+AcidPlatform	200	1000
+AcidPlatform	400	1000
+AcidPlatform	000	1000
+AcidPlatform	600	1000
+AcidPlatform	800	1000
+AcidPlatform	1100	1000

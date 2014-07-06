@@ -52,6 +52,8 @@ class World:
                 self.create_big_platform(x, y)
             elif fields[0] == "SmallPlatform":
                 self.create_small_platform(x, y)
+            elif fields[0] == "AcidPlatform":
+                self.create_acid_platform(x, y)
             elif fields[0] == "SmallHMovingPlatform":
                 self.create_small_hmoving_platform(x, y)
             elif fields[0] == "SmallVMovingPlatform":
@@ -68,6 +70,11 @@ class World:
 
     def create_big_platform(self, x, y):
         platform = BigPlatform(x, y)
+        self.platforms.append(platform)
+        self.physics.add_collideable(platform)
+        
+    def create_acid_platform(self, x, y):
+        platform = AcidPlatform(x, y)
         self.platforms.append(platform)
         self.physics.add_collideable(platform)
         

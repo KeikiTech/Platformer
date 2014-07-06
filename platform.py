@@ -37,6 +37,11 @@ class AcidPlatform(sf.Drawable, Platform, Collideable):
     def draw(self, target, render_states):
         self._sprite.position = self.position-sf.Vector2(0, 14)
         target.draw(self._sprite, render_states)
+
+    def on_collision_begin(self, other, side):
+        if hasattr(other, "health"):
+            other.health -= 1
+        return False
 		
 class SmallHMovingPlatform(sf.Drawable, Platform, Collideable):
     def __init__(self, x, y):
